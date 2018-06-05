@@ -1,2 +1,2 @@
 # ModelCreator
-ORM by Marco Bainchi
+ORM by Marco Bianchi
