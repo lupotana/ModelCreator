@@ -1,0 +1,80 @@
+using System;
+
+namespace ***NameSpace***
+{
+    public static class Null
+    {
+        private static DateTime minDate = new DateTime(1900, 1, 1);
+        private static DateTime maxDate = new DateTime(2099, 12, 31, 23, 59, 59, 999);
+        private static int intNull = 0;
+        private static short shortNull = 0;
+        private static float floatNull = 0;
+        private static decimal decimalNull = -1;
+        private static byte byteNull = 0;
+        private static double doubleNull = 0;
+        private static Int16 int16Null = 0;
+
+        private static string stringFake = "9999999999";
+        private static int intFake = 999999999;
+        private static Int16 int16Fake = 31999;
+        private static decimal decimalFake = 999999999;
+        private static float floatFake = 999999999;
+
+        public static DateTime MinDate
+        {
+            get { return minDate; }
+        }
+        public static DateTime MaxDate
+        {
+            get { return maxDate; }
+        }
+        public static int IntNull
+        {
+            get { return intNull; }
+        }
+        public static Int16 Int16Null
+        {
+            get { return int16Null; }
+        }
+        public static short ShortNull
+        {
+            get { return shortNull; }
+        }
+        public static float FloatNull
+        {
+            get { return floatNull; }
+        }
+        public static decimal DecimalNull
+        {
+            get { return decimalNull; }
+        }
+        public static double DoubleNull
+        {
+            get { return doubleNull; }
+        }
+        public static byte ByteNull
+        {
+            get { return byteNull; }
+        }
+        public static string StringFake
+        {
+            get { return stringFake; }
+        }
+        public static int IntFake
+        {
+            get { return intFake; }
+        }
+        public static Int16 Int16Fake
+        {
+            get { return int16Fake; }
+        }
+        public static decimal DecimalFake
+        {
+            get { return decimalFake; }
+        }
+        public static float FloatFake
+        {
+            get { return floatFake; }
+        }        
+    }
+}

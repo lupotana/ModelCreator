@@ -1,0 +1,4 @@
+        public DataTable ***FunctionName***(***parameterListHeader***)
+        {
+			return ***ClassName_LowerCase***.***FunctionName***(***ParameterListCall***);
+        }

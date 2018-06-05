@@ -1,0 +1,1 @@
+WebTools.Populate(ddl***Name***Code, new ***Name***().GetCollection(), "***Name***Code", "***Name***Name", true);

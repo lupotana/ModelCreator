@@ -1,0 +1,47 @@
+<%@ Page Language="C#" MasterPageFile="~/masters/BackOffice.master" AutoEventWireup="true"
+    CodeFile="***Name***Detail.aspx.cs" Inherits="***Name***Detail" %>
+
+<asp:Content ID="ContentItem" ContentPlaceHolderID="ContentPlaceHolderItem" runat="Server">
+    <table style="width: 100%">
+        <tr>
+            <td colspan="2">
+                <asp:Label ID="lblOperation" runat="server" SkinID="lblOperation" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100%">
+                <asp:Panel ID="pnlData" Style="width: 100%" runat="server">
+                    #WebControls#
+                </asp:Panel>                
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 1px; background-color: Black;" colspan="4">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td style="vertical-align: middle;">
+                            <asp:Image ID="imgResult" runat="server" Visible="false" /></td>
+                        <td style="vertical-align: middle;">
+                            <asp:Label ID="lblMessageResult" runat="server" Font-Bold="true" /></td>
+                        <td style="vertical-align: middle;">
+                            <asp:ValidationSummary ID="vsDetail" runat="server" HeaderText="Required Fields" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" align="center">
+                <asp:ImageButton ID="btnConfirm" runat="server" OnClick="ConfirmOperation" ImageUrl="~/images/button/ok.gif"
+                    AlternateText="Conferma" ToolTip="Conferma operazione" />&nbsp;
+                <asp:ImageButton ID="btnClear" runat="server" OnClick="btnClear_Click" ImageUrl="~/images/button/clear.gif"
+                    CausesValidation="False" AlternateText="Svuota" ToolTip="Svuota tutti i campi" />&nbsp;
+                <asp:ImageButton ID="btnExit" runat="server" CausesValidation="False" ImageUrl="~/images/button/close.gif"
+                    AlternateText="Esci" OnClick="btnExit_Click" ToolTip="Esci dalla gestione del record" /></td>
+        </tr>
+    </table>
+</asp:Content>

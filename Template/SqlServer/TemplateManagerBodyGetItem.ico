@@ -1,0 +1,4 @@
+public static ***ClassName*** ***FunctionName***(***parameterListHeader***)
+        {
+            return GetDataProvider().***FunctionName***(***parameterListSubHeader***);
+        }

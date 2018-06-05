@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71590B92-F82E-410D-8E53-8ABB591B866D}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ModelCreator</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ModelCreator</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>974044F0CA7A03176453BBB769417144D955F46D</ManifestCertificateThumbprint>
+    <ManifestKeyFile>ModelCreator 2009_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>false</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <PublishUrl>C:\TestModelCreator\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>true</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>http://www.marcobianchi.it</SupportUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Model Creator</ProductName>
+    <PublisherName>Marco Bianchi</PublisherName>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2013.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Devart.Data, Version=5.0.591.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data.PostgreSql, Version=6.2.132.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Gupta.SQLBase.data, Version=9.0.1.13768, Culture=neutral, PublicKeyToken=b64f610276873336" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\ModelCreator.vshost.exe" />
+    <Content Include="App.ico" />
+    <Content Include="Dll\Devart.Data.dll" />
+    <Content Include="Dll\Devart.Data.PostgreSql.dll" />
+    <Content Include="Dll\Gupta.SQLBase.data.dll" />
+    <Content Include="ListClass.xml" />
+    <None Include="App - Omega.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Provider_Access_32.png" />
+    <None Include="Resources\brush24.png" />
+    <None Include="Resources\brush2_24.png" />
+    <None Include="Resources\Provider_PostGres_32.png" />
+    <None Include="Resources\server_24.png" />
+    <None Include="Resources\data_24.png" />
+    <None Include="Resources\Provider_SQLSERVER.png" />
+    <None Include="Resources\Provider_MYSQL.jpg" />
+    <None Include="Resources\Provider_ORACLE.jpg" />
+    <None Include="Resources\Provider_Access.png" />
+    <None Include="Resources\Provider_POSTGRES.png" />
+    <None Include="Resources\Provider_ACCESS1.png" />
+    <None Include="Resources\Provider_MYSQL.png" />
+    <None Include="Resources\Provider_ORACLE1.jpg" />
+    <None Include="Resources\Provider_POSTGRES1.png" />
+    <None Include="Resources\Provider_SQLBASE.png" />
+    <None Include="Resources\Provider_SQLBASE1.png" />
+    <None Include="Resources\Provider_SQLSERVER1.png" />
+    <None Include="Resources\Provider_AUTOTASK.png" />
+    <Content Include="Template\Access\ListClass\ListLoad.ico" />
+    <Content Include="Template\Access2\CrudTemplateAccess.ico" />
+    <Content Include="Template\Access2\CrudTemplatePlusAccess.ico" />
+    <Content Include="Template\Access2\Interface.ico" />
+    <Content Include="Template\Access2\ListClass\ListLoad.ico" />
+    <Content Include="Template\Access2\Snippet\CheckExist.ico" />
+    <Content Include="Template\Access2\Snippet\SwithcCustomFields.ico" />
+    <Content Include="Template\AutoTask\CrudTemplateAutoTask.ico" />
+    <Content Include="Template\AutoTask\ListClass\ListLoad.ico" />
+    <Content Include="Template\AutoTask\Snippet\CheckExist.ico" />
+    <Content Include="Template\AutoTask\Snippet\SwithcCustomFields.ico" />
+    <Content Include="Template\SqlServer\2015ThreeLayer\GetItemTemplate.ico" />
+    <Content Include="Template\SqlServer\2015ThreeLayer\GetCollectionTemplate.ico" />
+    <Content Include="Template\SqlServer\2015ThreeLayer\TemplateBusinessThreeLayer.ico" />
+    <Content Include="Template\SqlServer\2015ThreeLayer\TemplateDataLayerThreeLayer.ico" />
+    <Content Include="Template\SqlServer\CrudTemplateDynamic.ico" />
+    <Content Include="Template\PostGres\CrudTemplatePostGres.ico" />
+    <Content Include="Template\PostGres\CrudTemplatePlusPostGres.ico" />
+    <Content Include="Template\PostGres\Interface.ico" />
+    <Content Include="Template\PostGres\ListClass\ListLoad.ico" />
+    <Content Include="Template\PostGres\Snippet\CheckExist.ico" />
+    <Content Include="Template\PostGres\Snippet\SwithcCustomFields.ico" />
+    <Content Include="Template\SqlBase2\ListClass\ListLoad.ico" />
+    <Content Include="Template\SqlBase\ListClass\ListLoad.ico" />
+    <Content Include="Template\SqlServer\ListClass\ListLoad.ico" />
+    <None Include="Resources\RssXml_16.gif" />
+    <None Include="Resources\xml_16.png" />
+    <None Include="Resources\Provider_SqlServer2008_32.png" />
+    <None Include="Resources\Provider_SqlServer2005_32.png" />
+    <None Include="Resources\Provider_SqlServer2000_32.jpg" />
+    <None Include="Resources\Provider_SqlBase_32.png" />
+    <None Include="Resources\Provider_MySQL_32.gif" />
+    <None Include="Resources\text_ok_24.png" />
+    <None Include="Resources\error_24.png" />
+    <None Include="Resources\warning_24.png" />
+    <None Include="Resources\check_24.png" />
+    <None Include="Resources\user1_16.png" />
+    <None Include="Resources\text_tree_24.png" />
+    <None Include="Resources\magic-wand_24.png" />
+    <None Include="Resources\selection_24.png" />
+    <None Include="Resources\checks_24.png" />
+    <None Include="Resources\data_16.png" />
+    <None Include="Resources\lock_16.png" />
+    <None Include="Resources\server_16.png" />
+    <None Include="Resources\scroll_24.png" />
+    <None Include="Resources\flash_24.png" />
+    <None Include="Resources\disk_blue_24.png" />
+    <None Include="Resources\gear_run_24.png" />
+    <None Include="Resources\folder_24.png" />
+    <None Include="Properties\app.manifest" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Globalization\Language-en.cs" />
+    <Compile Include="Globalization\Language.cs" />
+    <Compile Include="Globalization\Language-it.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Provider\Access\CreateClassAccess.cs" />
+    <Compile Include="Provider\Access\GetDatatableAccess.cs" />
+    <Compile Include="Provider\Access\SQLHelperAccess.cs" />
+    <Compile Include="Provider\AutoTask\CreateClassAutoTask.cs" />
+    <Compile Include="Provider\AutoTask\GetDatatableAutoTask.cs" />
+    <Compile Include="Provider\PostGres\CreateClassPostGres.cs" />
+    <Compile Include="Provider\PostGres\GetDatatablePostGres.cs" />
+    <Compile Include="Provider\PostGres\SQLHelperPostGres.cs" />
+    <Compile Include="Provider\SqlServer\GetDatatable.cs" />
+    <Compile Include="Provider\SqlServer\SQLHelper.cs" />
+    <Content Include="Template\SqlBase\Interface.ico" />
+    <Content Include="Template\SqlServer\WebForm\pageDetail.aspx.cs.ico" />
+    <Content Include="Template\SqlServer\WebForm\pageDetail.aspx.ico" />
+    <Content Include="Template\SqlServer\WebForm\pageListDetail.aspx.cs.ico" />
+    <Content Include="Template\SqlServer\WebForm\pageListDetail.aspx.ico" />
+    <Content Include="Template\Access\CrudTemplateAccess.ico" />
+    <Content Include="Template\Access\CrudTemplatePlusAccess.ico" />
+    <Content Include="Template\Access\Interface.ico" />
+    <Content Include="Template\Access\Snippet\CheckExist.ico" />
+    <Content Include="Template\Access\Snippet\SwithcCustomFields.ico" />
+    <Content Include="Template\SqlBase2\CrudTemplatePlusSqlBase.ico" />
+    <Content Include="Template\SqlBase2\CrudTemplateSqlBase.ico" />
+    <Content Include="Template\SqlBase2\DataHelper.ico" />
+    <Content Include="Template\SqlBase2\DbShared.ico" />
+    <Content Include="Template\SqlBase2\Interface.ico" />
+    <Content Include="Template\SqlBase2\Null.ico" />
+    <Content Include="Template\SqlBase2\Snippet\CheckExist.ico" />
+    <Content Include="Template\SqlBase2\Snippet\SwithcCustomFields.ico" />
+    <Content Include="Template\SqlBase2\SqlHelperGupta.ico" />
+    <Content Include="Template\SqlBase\CrudTemplatePlusSqlBase.ico" />
+    <Content Include="Template\SqlBase\CrudTemplateSqlBase.ico" />
+    <Content Include="Template\SqlBase\Snippet\CheckExist.ico" />
+    <Content Include="Template\SqlBase\Snippet\SwithcCustomFields.ico" />
+    <Content Include="Template\SqlServer\CrudTemplate.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\CrudTemplateNoKeyuni.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\CrudTemplateNoTimespan.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\CrudTemplateNoTimespanNoKeyuni.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\Professional\GetCollectionTemplate.ico" />
+    <Content Include="Template\SqlServer\Professional\GetItemTemplate.ico" />
+    <Content Include="Template\SqlServer\Simple\GetCollectionTemplate.ico" />
+    <Content Include="Template\SqlServer\Simple\GetItemTemplate.ico" />
+    <Content Include="Template\SqlServer\Snippet\CheckExist.ico" />
+    <Content Include="Template\SqlServer\Snippet\SwithcCustomFields.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\calendar.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\calendar2.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\dropdownlist.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\getData.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\label.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\populateList.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\requiredFieldValidator.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\setData.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\textarea.ico" />
+    <Content Include="Template\SqlServer\WebTemplate\textbox.ico" />
+    <Content Include="Template\SqlServer\TemplateClassLayer.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\TemplateCollection.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\TemplateDataFactoryBody.ico" />
+    <Content Include="Template\SqlServer\TemplateDataFactoryHeader.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\TemplateDataLayer.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\TemplateInterface.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\TemplateManager.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Template\SqlServer\TemplateManagerBodyGetCollection.ico" />
+    <Content Include="Template\SqlServer\TemplateManagerBodyGetItem.ico" />
+    <Content Include="Template\SqlServer\TemplateUnknown.ico">
+      <SubType>Code</SubType>
+    </Content>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utility\ApplicationEnum.cs" />
+    <Compile Include="Provider\SqlBase\GetDatatableSqlBase.cs" />
+    <Compile Include="Provider\SqlBase\CreateClassSqlBase.cs" />
+    <Compile Include="Provider\SqlServer\CreateClass.cs" />
+    <Compile Include="Provider\SqlServer\GetInfoField.cs" />
+    <Compile Include="Utility\GetWebControls.cs" />
+    <Compile Include="Utility\Security.cs" />
+    <Compile Include="Utility\Session.cs" />
+    <Compile Include="Provider\SqlServer\StoredProcedure.cs" />
+    <Compile Include="Provider\SqlServer\GetStoredProcedures.cs" />
+    <Compile Include="Utility\ManageTemplate.cs" />
+    <Compile Include="Provider\SqlServer\Utility.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Provider\SqlBase\SQLHelperGupta.cs" />
+    <Compile Include="StartModelCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartModelCreator.designer.cs">
+      <DependentUpon>StartModelCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\autotask\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartModelCreator.resx">
+      <DependentUpon>StartModelCreator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQLBASE_App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\autotask\Attachment.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\autotask\atws.wsdl" />
+    <None Include="Web References\autotask\ATWSResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\autotask\ATWSZoneInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\autotask\EntityInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\autotask\Field.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\autotask\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="POSTGRES_App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ACC_App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AUTO_App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://webservices9.autotask.net/atservices/1.5/atws.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\autotask\</RelPath>
+      <UpdateFromURL>https://webservices9.autotask.net/atservices/1.5/atws.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ModelCreator_autotask_ATWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

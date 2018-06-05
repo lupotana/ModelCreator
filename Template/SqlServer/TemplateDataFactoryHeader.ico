@@ -1,0 +1,14 @@
+using System;
+using System.Configuration;
+
+using ***NameSpace***.ClassLayer;
+using ETM.UtilityClass;
+
+namespace ***NameSpace***.DataLayer
+{
+    public sealed class DataProviderFactory
+    {        
+        ***GenerateFactory***   
+
+    }
+}

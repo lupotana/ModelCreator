@@ -1,0 +1,4 @@
+        public ***ClassName*** ***FunctionName*** (***parameterListHeader***)
+        {
+			return ReverseMapping(***ClassName_LowerCase***.***FunctionName***(***ParameterListCall***));
+        }

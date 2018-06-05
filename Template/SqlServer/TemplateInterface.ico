@@ -1,0 +1,18 @@
+using System;
+
+using ***NameSpace***.ClassLayer;
+
+namespace ***NameSpace***.DataLayer
+{
+    public interface IDataProvider***ClassName***
+    {
+        void Insert(***ClassName*** item);
+        void Update(***ClassName*** item);
+        void Delete(***ClassName*** item);
+
+        ***ClassName***Collection GetCollection();
+        ***ClassName*** GetByKeyuni(Guid keyuni);
+      
+        ***Collection***
+    }
+}

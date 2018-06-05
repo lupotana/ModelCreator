@@ -1,0 +1,7 @@
+﻿                        case "***FIELDNAME***":
+                            field = new Field();
+                            field.Name = "***FIELDNAME***";
+                            field.Type = ***FIELDTYPE***;
+                            field.Value = ***FIELDNAME***;
+                            fieldsCollection.Add(field.Name, field);
+                            break;

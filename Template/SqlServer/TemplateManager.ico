@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+using ***NameSpace***.ClassLayer;
+using ***NameSpace***.DataLayer;
+
+namespace ***NameSpace***.ManagerLayer
+{
+    public static class Manager***ClassName***
+    {
+        public static void Insert(***ClassName*** item) { GetDataProvider().Insert(item); }
+        public static void Update(***ClassName*** item) { GetDataProvider().Update(item); }
+        public static void Delete(***ClassName*** item) { GetDataProvider().Delete(item); }
+
+        public static object GenerateKey() { return 0; }
+
+        public static ***ClassName***Collection GetCollection()
+        {
+            return GetDataProvider().GetCollection();
+        }
+
+        public static ***ClassName*** GetByKeyuni(Guid keyuni)
+        {
+            return GetDataProvider().GetByKeyuni(keyuni);
+        }
+
+        private static IDataProvider***ClassName*** GetDataProvider()
+        {
+            return DataProviderFactory.GetProvider***ClassName***();
+        }
+
+        ***Collection***
+    }
+}

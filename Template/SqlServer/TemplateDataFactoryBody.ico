@@ -1,0 +1,12 @@
+public static IDataProvider***ClassName*** GetProvider***ClassName***()
+        {
+            switch (ProviderHelper.Provider)
+            {
+                case "SqlServer":
+                    return new ***NameSpace***.DataLayer.SqlServer.DataProvider***ClassName***();
+                case "Oracle":
+                    return new ***NameSpace***.DataLayer.SqlServer.DataProvider***ClassName***();
+                default:
+                    return new ***NameSpace***.DataLayer.SqlServer.DataProvider***ClassName***();
+            }
+        }    

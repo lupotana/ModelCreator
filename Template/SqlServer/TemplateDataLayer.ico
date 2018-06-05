@@ -1,0 +1,129 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+
+using ***NameSpace***.ClassLayer;
+using ETM.UtilityClass;
+using Microsoft.ApplicationBlocks.Data;
+
+namespace ***NameSpace***.DataLayer.SqlServer
+{
+    public class DataProvider***ClassName*** : IDataProvider***ClassName***
+    {
+        string className = "***ClassName***";         
+
+        #region Crud
+
+        public void Insert(***ClassName*** item)
+        {            
+            SqlParameter[] parameters = GetParameter(item, EventContext.Insert);
+            SqlHelper.ExecuteNonQuery(ProviderHelper.ConnectionString, CommandType.StoredProcedure, string.Concat(EventContext.Insert.ToString(), className), parameters);            
+        }
+
+        public void Update(***ClassName*** item)
+        {            
+            SqlParameter[] parameters = GetParameter(item, EventContext.Update);
+            SqlHelper.ExecuteNonQuery(ProviderHelper.ConnectionString, CommandType.StoredProcedure, string.Concat(EventContext.Update.ToString(), className), parameters);            
+        }
+
+        public void Delete(***ClassName*** item)
+        {            
+            SqlParameter[] parameters = GetParameter(item, EventContext.Delete);
+            SqlHelper.ExecuteNonQuery(ProviderHelper.ConnectionString, CommandType.StoredProcedure, string.Concat(EventContext.Delete.ToString(), className), parameters);            
+        }
+
+        #endregion
+
+        #region CollectionBase
+
+        public ***ClassName***Collection GetCollection()
+        {
+            string storedProcedure = string.Concat("GetCollection", className);
+            ***ClassName***Collection collection = new ***ClassName***Collection();
+
+            SqlDataReader dataReader = SqlHelper.ExecuteReader(ProviderHelper.ConnectionString, CommandType.StoredProcedure, storedProcedure);
+            try
+            {
+                while (dataReader.Read())
+                {
+                    ***ClassName*** item = Mapping(dataReader);
+                    collection.Add(item);
+                }
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+
+            return collection;
+        }
+
+        public ***ClassName*** GetByKeyuni(Guid keyuni)
+        {
+            string storedProcedure = string.Concat("GetByKeyuni", className);
+            ***ClassName*** item = new ***ClassName***();
+
+            #region Parameters
+
+            SqlParameter parameterKeyuni = new SqlParameter("@Keyuni", SqlDbType.UniqueIdentifier);
+            parameterKeyuni.Value = keyuni;
+
+            SqlParameter[] parameters = new SqlParameter[] { parameterKeyuni };
+
+            #endregion
+
+            SqlDataReader dataReader = SqlHelper.ExecuteReader(ProviderHelper.ConnectionString, CommandType.StoredProcedure, storedProcedure, parameters);
+            try
+            {
+                while (dataReader.Read())
+                {
+                    item = Mapping(dataReader);
+                    break;
+                }
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+            finally
+            {
+                if (!dataReader.IsClosed) dataReader.Close();
+                dataReader.Dispose();
+            }
+            return item;
+        }
+       
+        #endregion
+
+        #region Collection
+
+***Collection***         
+        #endregion
+
+        private ***ClassName*** Mapping(SqlDataReader dataReader)
+        {
+            ***ClassName*** item = new ***ClassName***();
+
+***Mapping***           
+            return item;
+        }
+
+        private SqlParameter[] GetParameter(***ClassName*** item, EventContext operation)
+        {
+            SqlParameter[] parameters = new SqlParameter[20];
+
+            #region Parameter
+***Parameters***     
+           
+            #endregion
+
+            switch (operation)
+            {
+                case EventContext.Insert:
+                case EventContext.Update:
+                    parameters = new SqlParameter[] { 
+***ParametersList***                                                    
+                    break;
+                case EventContext.Delete:
+                    parameters = new SqlParameter[] { parameterKeyuni };
+                    break;
+            }
+
+            return parameters;
+        }
+    }
+}

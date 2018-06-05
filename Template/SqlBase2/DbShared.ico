@@ -1,0 +1,455 @@
+﻿using System;
+using System.Data;
+using System.Collections.Generic;
+using System.Text;
+using Gupta.SQLBase.Data;
+
+namespace ***NameSpace***
+{
+    public class DbShared
+    {
+        #region NEEDED
+
+        public static class SqlUtility
+        {
+          
+            public static string BuildDelete(string className, Dictionary<string, Field> whereFields)
+            {
+                StringBuilder sb = new StringBuilder();
+                
+                sb.Append(string.Format("DELETE FROM {0} ", className));
+                sb.Append(BuildWhere(whereFields));
+
+                return sb.ToString();
+            }
+
+            public static string BuildSelect(string className, Dictionary<string, Field> fields, Dictionary<string, Field> whereFields)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT ");
+
+                foreach (KeyValuePair<string, Field> kvp in fields)
+                {
+                    sb.Append(kvp.Key);
+                    sb.Append(",");
+                }
+                sb.Remove(sb.Length - 1, 1);
+
+                sb.Append(string.Format(" FROM {0} ", className));
+                sb.Append(BuildWhere(whereFields));
+
+                return sb.ToString();
+            }
+
+            public static string BuildUpdate(string className, Dictionary<string, Field> fields, Dictionary<string, Field> whereFields)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(string.Format("UPDATE {0} SET ", className));
+
+                foreach (KeyValuePair<string, Field> kvp in fields)
+                {
+                    sb.Append(BuildUpdate(kvp.Value));
+                    sb.Append(",");
+                }
+                sb.Remove(sb.Length - 1, 1);
+
+                sb.Append(BuildWhere(whereFields));
+
+                return sb.ToString();
+            }
+
+            public static string BuildUpdate(Field field)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                bool isValid = false;
+                if (field.Value != null)
+                {
+                    switch (field.Type)
+                    {
+                        case FieldType.Numeric:
+                            decimal valueNumeric = Null.DecimalNull;
+                            if (decimal.TryParse(field.Value.ToString(), out valueNumeric))
+                                if (valueNumeric != Null.DecimalNull)
+                                    isValid = true;
+                            break;
+                        case FieldType.Date:
+                            DateTime valueDate = Null.MinDate;
+                            if (DateTime.TryParse(field.Value.ToString(), out valueDate))
+                                if (valueDate != Null.MinDate)
+                                    isValid = true;
+                            break;
+                        case FieldType.Time:
+
+                            break;
+                        case FieldType.String:
+                            if (!field.Value.ToString().Trim().Equals(string.Empty))
+                                isValid = true;
+                            break;
+                        case FieldType.Bool:
+                            bool valueBool = false;
+                            if (bool.TryParse(field.Value.ToString(), out valueBool))
+                                isValid = true;
+                            else
+                                if ((field.Value.ToString().Equals("1")) || (field.Value.ToString().Equals("0")))
+                                    isValid = true;
+                            break;
+                        default: isValid = false;
+                            break;
+                    }
+
+                    if (isValid)
+                    {
+                        switch (field.Type)
+                        {
+                            case FieldType.Numeric:
+                                sb.Append(string.Format("{0} = {1}", field.Name, field.Value.ToString()));
+                                break;
+                            case FieldType.Date:
+                                DateTime date = DateTime.Parse(field.Value.ToString());
+                                sb.Append(string.Format("{0} = '{1}-{2}-{3} {4}:{5}'", field.Name, date.Year, date.Month, date.Day, date.Hour, date.Minute));
+                                break;
+                            case FieldType.String:
+                                sb.Append(string.Format("{0} = '{1}'", field.Name, field.Value.ToString().Trim().Replace("'", "''")));
+                                break;
+                            case FieldType.Bool:
+                                sb.Append(string.Format("{0} = {1}", field.Name, field.Value.ToString().Trim()));
+                                break;
+                        }
+                    }
+                    else 
+                    {
+                        if (field.Value == DBNull.Value)
+                            sb.Append(string.Format("{0} = NULL", field.Name));
+                    }
+                }
+
+                if (sb.Length > 0)
+                {
+                    string query = sb.ToString();                
+                    return query;
+                }
+                else return string.Concat("#ERROR BUILD FIELD : ",field.Name);
+            }
+
+            public static string BuildWhere(Dictionary<string, Field> list)
+            {
+                StringBuilder sb = new StringBuilder();
+                bool isFirst = true;
+
+                foreach (KeyValuePair<string, Field> kvp in list)
+                {
+                    Field field = kvp.Value;
+
+                    bool isValid = false;
+                    if (field.Value != null)
+                    {
+                        switch (field.Type)
+                        {
+                            case FieldType.Numeric:
+                                decimal valueNumeric = Null.DecimalNull;
+                                if (decimal.TryParse(field.Value.ToString(), out valueNumeric))
+                                    if (valueNumeric != Null.DecimalNull)
+                                        isValid = true;
+                                break;
+                            case FieldType.Date:
+                                DateTime valueDate = Null.MinDate;
+                                if (DateTime.TryParse(field.Value.ToString(), out valueDate))
+                                    if (valueDate != Null.MinDate)
+                                        isValid = true;
+                                break;
+                            case FieldType.String:
+                                if (!field.Value.ToString().Trim().Equals(string.Empty))
+                                    isValid = true;
+                                break;
+                            case FieldType.Bool:
+                                bool valueBool = false;
+                                if (bool.TryParse(field.Value.ToString(), out valueBool))
+                                    isValid = true;
+                                else
+                                    if ((field.Value.ToString().Equals("1")) || (field.Value.ToString().Equals("0")))
+                                        isValid = true;
+                                break;
+                            default: isValid = false;
+                                break;
+                        }
+
+                        if (isValid)
+                        {
+                            if (!isFirst)
+                            {
+                                string suffix = string.Empty;
+                                if (sb.ToString().EndsWith("("))
+                                {
+                                    sb.Remove(sb.Length - 1, 1);
+                                    suffix = "(";
+                                }
+
+                                sb.Append(string.Format(" {0} {1}", field.FilterType.ToString(), suffix));
+                            }
+                            isFirst = false;
+
+                            switch (field.Type)
+                            {
+                                case FieldType.Numeric:
+                                    sb.Append(string.Format("({0} = {1})", field.Name, field.Value.ToString()));
+                                    break;
+                                case FieldType.Date:
+                                    sb.Append(string.Format("({0} = '{1}')", field.Name, DateTime.Parse(field.Value.ToString()).ToShortDateString()));
+                                    break;
+                                case FieldType.String:
+                                    sb.Append(string.Format("({0} = '{1}')", field.Name, field.Value.ToString().Trim().Replace("'", "''")));
+                                    break;
+                                case FieldType.Bool:
+                                    sb.Append(string.Format("({0} = {1})", field.Name, field.Value.ToString().Trim()));
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if ((field.Name.Equals("(")) || (field.Name.Equals(")")))
+                            sb.Append(field.Name);
+                    }
+                }
+
+                if (sb.Length > 0)
+                {
+                    string query = sb.ToString();
+                    query = string.Format(" WHERE ({0})", query);
+                    return query;
+                }
+                else return string.Empty;
+            }
+
+            public static string GetFields(Dictionary<string, Field> list, string className)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT ");
+
+                foreach (KeyValuePair<string, Field> kvp in list)
+                {
+                    sb.Append(kvp.Key);
+                    sb.Append(",");
+                }
+
+                sb.Remove(sb.Length - 1, 1);
+
+                sb.Append(string.Format(" FROM {0}", className));
+                sb.Append(" {0}"); //SEGNAPOSTO PER CLAUSOLA WHERE
+
+                return sb.ToString();
+            }
+
+            public static Dictionary<string, Field> TrasformDictionary(FieldCollection list)
+            {
+                Dictionary<string, Field> collection = new Dictionary<string, Field>();
+
+                foreach (Field field in list)
+                {
+                    collection.Add(field.Name, field);
+                }
+                return collection;
+            }
+
+            public static string CreateDynamicQuery(FieldCollection list)
+            {
+                Dictionary<string, Field> collection = new Dictionary<string, Field>();
+
+                foreach (Field field in list)
+                {
+                    collection.Add(field.Name, field);
+                }
+                return CreateDynamicQuery(collection);
+            }
+
+
+            //OBSOLETA
+            public static string CreateDynamicQuery(Dictionary<string, Field> list)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (KeyValuePair<string, Field> kvp in list)
+                {
+                    Field field = kvp.Value;
+
+                    bool isValid = false;
+                    if (field.Value != null)
+                    {
+                        switch (field.Type)
+                        {
+                            case FieldType.Numeric:
+                                decimal valueNumeric = Null.DecimalNull;
+                                if (decimal.TryParse(field.Value.ToString(), out valueNumeric))
+                                    if (valueNumeric != Null.DecimalNull)
+                                        isValid = true;
+                                break;
+                            case FieldType.Date:
+                                DateTime valueDate = Null.MinDate;
+                                if (DateTime.TryParse(field.Value.ToString(), out valueDate))
+                                    if (valueDate != Null.MinDate)
+                                        isValid = true;
+                                break;
+                            case FieldType.String:
+                                if (!field.Value.ToString().Trim().Equals(string.Empty))
+                                    isValid = true;
+                                break;
+                            default: isValid = false;
+                                break;
+                        }
+
+                        if (isValid)
+                        {
+                            if (sb.Length > 0)
+                                sb.Append(string.Format(" {0} ", field.FilterType.ToString()));
+
+                            switch (field.Type)
+                            {
+                                case FieldType.Numeric:
+                                    sb.Append(string.Format("({0} = {1})", field.Name, field.Value.ToString()));
+                                    break;
+                                case FieldType.Date:
+                                    sb.Append(string.Format("({0} = '{1}')", field.Name, DateTime.Parse(field.Value.ToString()).ToShortDateString()));
+                                    break;
+                                case FieldType.String:
+                                    sb.Append(string.Format("({0} = '{1}')", field.Name, field.Value.ToString().Trim().Replace("'", "''")));
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (sb.Length > 0)
+                {
+                    string query = sb.ToString();
+                    query = string.Format(" WHERE ({0})", query);
+                    return query;
+                }
+                else return string.Empty;
+            }
+        }
+
+        public class Field
+        {
+            public string Name { get; set; }
+            public FieldType Type { get; set; }
+            public object Value { get; set; }
+            public OperatorType FilterType { get; set; }
+            public Like LikeType { get; set; }
+
+            public Field()
+            {
+                FilterType = OperatorType.AND;
+                LikeType = Like.NOLIKE;
+            }
+
+            public Field(string name, FieldType fieldType)
+            {
+                Name = name;
+                Type = fieldType;
+            }
+
+            public Field(string name, FieldType fieldType, object value)
+            {
+                Name = name;
+                Type = fieldType;
+                Value = value;
+            }
+
+            public Field(string name, FieldType fieldType, object value, OperatorType filterType)
+            {
+                Name = name;
+                Type = fieldType;
+                Value = value;
+                FilterType = filterType;
+            }
+
+            public Field(string name, FieldType fieldType, object value, OperatorType filterType, Like likeType)
+            {
+                Name = name;
+                Type = fieldType;
+                Value = value;
+                FilterType = filterType;
+                LikeType = likeType;
+            }
+
+            public Field(string name, FieldType fieldType, object value, Like likeType)
+            {
+                Name = name;
+                Type = fieldType;
+                Value = value;
+                LikeType = likeType;
+            }
+        }
+
+        public enum FieldType
+        {
+            Numeric,
+            Date,
+            Time,
+            String,
+            Bool
+        }
+
+        public enum OperatorType
+        {
+            AND,
+            OR
+        }
+
+        public enum Like
+        {
+            NOLIKE,
+            LIKE_BEFORE,
+            LIKE_AFTER,
+            LIKE_WITHIN
+        }
+
+        public class FieldCollection : List<Field>
+        {
+            public void AddSimple(string name, FieldType fieldType, object value, OperatorType filterType)
+            {
+                Field item = new Field();
+                item.Name = name;
+                item.Type = fieldType;
+                item.Value = value;
+                item.FilterType = filterType;
+
+                this.Add(item);
+            }
+        }
+
+
+        public enum EventContext
+        {
+            Create,
+            Read,
+            Update,
+            Insert,
+            Delete,
+            NewKey,
+            NoOperation,
+            Counter,
+            Denied,
+            NoFound,
+            MaxLenght,
+            FileType,
+            Style,
+            Field,
+            Clone
+        }
+
+        #endregion
+
+
+
+
+        #region CUSTOM
+
+
+        //es. GetLastId() ....
+
+        
+        #endregion
+
+    }
+}

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ModelCreator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AUTOTASK_autotask_ATWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://webservices9.autotask.net/ATServices/1.5/atws.asmx</Value>
+    </Setting>
+    <Setting Name="ModelCreator_autotask_ATWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://webservices9.autotask.net/ATServices/1.5/atws.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

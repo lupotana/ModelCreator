@@ -1,0 +1,13 @@
+public DataTable ***FunctionName*** (***parameterListHeader***)
+        {
+            string storedProcedure = "#StoredName#";
+            DataTable dt = new DataTable();
+
+            #region Parameters
+***ParameterListBody***
+                SqlParameter[] parameters = new SqlParameter[] { ***ParameterListCall*** };
+
+            #endregion
+
+            return SqlHelper.ExecuteDataTable(ConnectionString, CommandType.StoredProcedure, storedProcedure, parameters);            
+        }

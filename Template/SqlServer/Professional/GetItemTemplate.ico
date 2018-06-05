@@ -1,0 +1,28 @@
+public ***ClassName*** ***FunctionName*** (***parameterListHeader***)
+        {
+            string storedProcedure = "#StoredName#";
+            ***ClassName*** item = new ***ClassName***Unknown();   
+
+            #region Parameters
+***ParameterListBody***
+                SqlParameter[] parameters = new SqlParameter[] { ***ParameterListCall*** };
+
+            #endregion
+           
+            SqlDataReader dataReader = SqlHelper.ExecuteReader(ProviderHelper.ConnectionString, CommandType.StoredProcedure, storedProcedure, parameters);
+            try
+            {
+                while (dataReader.Read())
+                {
+                    item = Mapping(dataReader);
+                    break;
+                }
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+            finally
+            {
+                if (!dataReader.IsClosed) dataReader.Close();
+                dataReader.Dispose();
+            }
+            return item;
+        }

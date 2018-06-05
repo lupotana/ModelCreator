@@ -1,0 +1,3 @@
+<asp:TextBox ID="txt***Name***" SkinID="#SkinId#" MaxLength="20" runat="server" />&nbsp;
+<asp:ImageButton ID="btn***Name***" runat="server" CausesValidation="False" ImageUrl="~/images/usercontrol/calendar.gif" OnClick="btn***Name***_Click" />&nbsp;
+<uc1:ucCalendar ID="cal***Name***" runat="server" Visible="false" OnSelectionChanged="calendar***Name***_SelectionChanged" />

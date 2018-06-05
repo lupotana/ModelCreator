@@ -1,0 +1,106 @@
+<%@ Page Language="C#" MasterPageFile="~/masters/BackOffice.master" AutoEventWireup="true"
+    CodeFile="***Name***ListDetail.aspx.cs" Inherits="***Name***ListDetail" %>
+
+<asp:Content ID="ContentPlaceHolderItemChild" ContentPlaceHolderID="ContentPlaceHolderItem"
+    runat="Server">
+    <table style="width: 98%; border-right: #101914 1px solid; border-top: #101914 1px solid;
+        border-left: #101914 1px solid; border-bottom: #101914 1px solid">
+        <tr>
+            <td style="width: 50%; vertical-align:top;">
+                <asp:GridView ID="gvList" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                    PageSize="15" OnPageIndexChanging="gvList_PageIndexChanging" OnRowDataBound="gvList_RowDataBound">
+                    <Columns>
+                        <asp:TemplateField Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblKeyuni" runat="server" Text='<%# Bind("Keyuni") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:ImageButton ID="btnView" runat="server" ToolTip="Visualizza" ImageUrl="~/images/grid/view.gif"
+                                    OnClick="btnView_Click" CausesValidation="false" /></ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:ImageButton ID="btnEdit" runat="server" ToolTip="Aggiorna" ImageUrl="~/images/grid/edit.gif"
+                                    OnClick="btnUpdate_Click" CausesValidation="false" /></ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:ImageButton ID="btnDelete" runat="server" ToolTip="Cancella" ImageUrl="~/images/grid/cross.gif"
+                                    OnClick="btnDelete_Click" CausesValidation="false" /></ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField HeaderText="***Name***Sigla" DataField="***Name***Name" />
+                        <asp:BoundField HeaderText="***Name***Descrizione" DataField="***Name***Description" />
+                    </Columns>
+                </asp:GridView>
+                <asp:Label ID="lblNothingRecord" runat="server" Text="Non ci sono elementi nel database" Font-Bold="true" ForeColor="#cc6600" Font-Underline="true"
+                    Visible="False"></asp:Label>
+            </td>
+            <td style="width: 50%">
+                <asp:Panel ID="pnlDetail" Style="width: 100%" runat="server" Visible="False">
+                    <table style="border-right: #101914 1px solid; border-top: #101914 1px solid; border-left: #101914 1px solid;
+                        border-bottom: #101914 1px solid; width:100%;">
+                        <tr>
+                            <td colspan="2">
+                                <asp:Label ID="lblOperation" runat="server" SkinID="lblOperation" />
+                            </td>
+                        </tr>
+                        <tr>
+                           <td colspan="2"><hr /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Panel ID="pnlData" Style="width: 100%" runat="server">
+                                    #WebControls#                                   
+                                </asp:Panel>
+                            </td>
+                        </tr>
+                        <tr>
+                           <td colspan="2"><hr /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td style="vertical-align: middle;">
+                                            <asp:Image ID="imgResult" runat="server" Visible="false" /></td>
+                                        <td style="vertical-align: middle;">
+                                            <asp:Label ID="lblMessageResult" runat="server" Font-Bold="true" /></td>
+                                        <td style="vertical-align: middle;">
+                                            <asp:ValidationSummary ID="vsDetail" runat="server" HeaderText="* Campi Richiesti" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">
+                                <asp:ImageButton ID="btnConfirm" runat="server" OnClick="ConfirmOperation" ImageUrl="~/images/button/ok.gif" />
+                                <asp:ImageButton ID="btnExitDetail" runat="server" OnClick="btnExitDetail_Click"
+                                    ImageUrl="~/images/button/close.gif" CausesValidation="False" /></td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table style="width: 98%; border-right: #101914 1px  solid; border-top: #101914 1px solid;
+        border-left: #101914 1px solid; border-bottom: #101914 1px solid">
+        <tr>
+            <td style="width: 33%">
+                <asp:ImageButton ID="btnInsert" runat="server" ToolTip="Inserimento nuovo elemento" ImageUrl="~/images/grid/new.gif"
+                    OnClick="btnInsert_Click" AlternateText="Inserimento nuovo elemento" /></td>
+            <td style="width: 34%">
+            </td>
+            <td style="width: 11%">
+            </td>
+            <td style="width: 11%">
+            </td>
+            <td style="width: 11%">
+                <asp:ImageButton ID="btnExit" runat="server" ToolTip="Uscita" ImageUrl="~/images/button/close.gif"
+                    OnClick="btnExit_Click" /></td>
+        </tr>
+    </table>
+</asp:Content>

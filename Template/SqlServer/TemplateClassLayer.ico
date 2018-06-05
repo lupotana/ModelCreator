@@ -1,0 +1,10 @@
+using System;
+using ETM.UtilityClass;
+
+namespace ***NameSpace***.ClassLayer
+{
+    public class ***ClassName***
+    {
+***PublicField***
+    }
+}

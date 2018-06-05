@@ -1,0 +1,254 @@
+using System;
+using System.Data.SqlClient;
+using Gupta.SQLBase.Data;
+
+namespace ***NameSpace***
+{
+    public class DataHelper
+    {
+        public static void ManageParameter(ref SqlParameter sqlParameter, object data)
+        {
+            if (data != null)
+            {
+                TypeCode typeKey = Type.GetTypeCode(data.GetType());
+
+                switch (typeKey)
+                {
+                    case TypeCode.Int16: SetInt(ref sqlParameter, Int16.Parse(data.ToString())); break;
+                    case TypeCode.Int32: SetInt(ref sqlParameter, Int32.Parse(data.ToString())); break;
+                    case TypeCode.Decimal: SetDecimal(ref sqlParameter, Decimal.Parse(data.ToString())); break;
+                    case TypeCode.String: SetString(ref sqlParameter, data.ToString()); break;
+                    case TypeCode.DateTime: SetDate(ref sqlParameter, DateTime.Parse(data.ToString())); break;
+                    case TypeCode.Boolean: SetBoolean(ref sqlParameter, bool.Parse(data.ToString())); break;
+                    case TypeCode.Byte: SetByte(ref sqlParameter, byte.Parse(data.ToString())); break;
+                }
+            }
+        }
+
+        public static void ManageParameter(ref SQLBaseParameter sqlParameter, object data)
+        {
+            if (data != null)
+            {
+                sqlParameter.Value = data;
+
+                //TypeCode typeKey = Type.GetTypeCode(data.GetType());
+
+                //switch (typeKey)
+                //{
+                //    case TypeCode.Int16: SetInt(ref sqlParameter, Int16.Parse(data.ToString())); break;
+                //    case TypeCode.Single: SetSingle(ref sqlParameter, Single.Parse(data.ToString())); break;
+                //    case TypeCode.Double: SetDouble(ref sqlParameter, double.Parse(data.ToString())); break;
+                //    case TypeCode.Int32: SetInt(ref sqlParameter, Int32.Parse(data.ToString())); break;
+                //    case TypeCode.Decimal: SetDecimal(ref sqlParameter, Decimal.Parse(data.ToString())); break;
+                //    case TypeCode.String: SetString(ref sqlParameter, data.ToString()); break;
+                //    case TypeCode.DateTime: SetDate(ref sqlParameter, DateTime.Parse(data.ToString())); break;
+                //    case TypeCode.Boolean: SetBoolean(ref sqlParameter, bool.Parse(data.ToString())); break;
+                //    case TypeCode.Byte: SetByte(ref sqlParameter, byte.Parse(data.ToString())); break;
+                //}
+            }
+            else sqlParameter.Value = DBNull.Value;
+        }
+
+        private static void SetString(ref SqlParameter sqlParameter, string data)
+        {
+            if (data == string.Empty) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetDouble(ref SQLBaseParameter sqlParameter, double data)
+        {
+            if (data == Null.DoubleNull) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetInt(ref SqlParameter sqlParameter, int data)
+        {
+            if (data == Null.Int) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetSingle(ref SQLBaseParameter sqlParameter, Single data)
+        {
+            if (data == Null.Int) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetDecimal(ref SqlParameter sqlParameter, decimal data)
+        {
+            if (data == Null.DecimalNull) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetDate(ref SqlParameter sqlParameter, DateTime data)
+        {
+            if ((data == Null.MinDate) || (data == DateTime.MinValue)) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetBoolean(ref SqlParameter sqlParameter, bool data)
+        {
+            sqlParameter.Value = data;
+        }
+
+        private static void SetByte(ref SqlParameter sqlParameter, byte data)
+        {
+            if (data == Null.ByteNull) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+
+        private static void SetString(ref SQLBaseParameter sqlParameter, string data)
+        {
+            if (data == string.Empty) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetInt(ref SQLBaseParameter sqlParameter, int data)
+        {
+            if (data == Null.Int) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetDecimal(ref SQLBaseParameter sqlParameter, decimal data)
+        {
+            if (data == Null.DecimalNull) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetDate(ref SQLBaseParameter sqlParameter, DateTime data)
+        {
+            if ((data == Null.MinDate) || (data == DateTime.MinValue)) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+        private static void SetBoolean(ref SQLBaseParameter sqlParameter, bool data)
+        {
+            if (data)
+                sqlParameter.Value = 1;
+            else sqlParameter.Value = 0;
+
+            //sqlParameter.Value = data;
+        }
+
+        private static void SetByte(ref SQLBaseParameter sqlParameter, byte data)
+        {
+            if (data == Null.ByteNull) sqlParameter.Value = DBNull.Value;
+            else sqlParameter.Value = data;
+        }
+
+
+
+
+        public static DateTime FormSetDate(string text, bool nullable)
+        {
+            if (nullable)
+            {
+                try
+                {
+                    return (DateTime.Parse(text));
+                }
+                catch
+                {
+                    return Null.MinDate;
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    return (DateTime.Parse(text));
+                }
+                catch
+                {
+                    throw new Exception("Una delle date immense non è corretta");
+                }
+            }
+        }
+
+        public static int FormSetInt(string text, bool nullable)
+        {
+            if (nullable)
+            {
+                try
+                {
+                    return (Int32.Parse(text));
+                }
+                catch
+                {
+                    return Null.Int;
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    return (Int32.Parse(text));
+                }
+                catch
+                {
+                    throw new Exception("Una dei dati numerici non è corretto");
+                }
+            }
+        }
+
+        public static decimal FormSetDecimal(string text, bool nullable)
+        {
+            if (nullable)
+            {
+                try
+                {
+                    return (Decimal.Parse(text));
+                }
+                catch
+                {
+                    return Null.DecimalNull;
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    return (Decimal.Parse(text));
+                }
+                catch
+                {
+                    throw new Exception("Una dei dati numerici non è corretto");
+                }
+            }
+        }
+
+        public static string FormGetInt(int text)
+        {
+            if (text == Null.Int) return string.Empty;
+            else return text.ToString();
+        }
+
+        public static string FormGetDateTime(DateTime text)
+        {
+            if (text == Null.MinDate) return string.Empty;
+            else return text.ToString("dd MMM yyyy");
+        }
+
+        public static string FormGetDecimal(int text)
+        {
+            if (text == Null.DecimalNull) return string.Empty;
+            else return text.ToString();
+        }
+
+
+        public static bool CompareArrayByte(Byte[] array1, Byte[] array2)
+        {
+            if (array2 == null) return true;
+            if (array1 == null) return true;
+            if (array1.Length != array2.Length) return false;
+
+            for (int i = 0; i < array1.Length; i++)
+                if (!Byte.Equals(array1[i], array2[i])) return false;
+
+            return true;
+        }
+    }
+}

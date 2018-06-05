@@ -1,0 +1,301 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+using ***NameSpace***;
+
+public partial class ***Name***Detail : System.Web.UI.Page
+{
+    #region Information Class
+
+    string className = "***Name***";
+    ***Name*** item = new ***Name***();
+        
+    string classKey = string.Empty;
+    string classOperation = string.Empty;
+    string classTimeSpan = string.Empty;
+
+    string pageDetail = string.Empty;
+    string pageList = string.Empty;    
+
+    EventContext operation = EventContext.NoOperation;
+    Guid key = Guid.Empty;
+    byte[] timeSpan;
+
+    #region Security
+
+    string sessionInsert = string.Empty;
+    string sessionRead = string.Empty;
+    string sessionUpdate = string.Empty;
+    string sessionDelete = string.Empty;
+
+    bool isInsert = false;
+    bool isRead = false;
+    bool isUpdate = false;
+    bool isDelete = false;
+
+    #endregion
+
+    #endregion
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        WebTools.StartManage(ref className, ref classKey, ref classOperation, ref pageDetail, ref pageList, ref classTimeSpan);
+        WebTools.StartSecurity(ref className, ref sessionInsert, ref sessionRead, ref sessionUpdate, ref sessionDelete);
+        SecurityCheck.CheckPermission(className, HttpContext.Current.User.Identity.Name, ref isInsert, ref isRead, ref isUpdate, ref isDelete);
+      
+        if (!IsPostBack)
+        {
+            if (HttpContext.Current.Items[classKey] != null) Key = (Guid)HttpContext.Current.Items[classKey];
+            if (HttpContext.Current.Items[classOperation] != null) Operation = (EventContext)HttpContext.Current.Items[classOperation];
+            OperationManager();
+            PopulateList();
+        }        
+    } 
+
+    #region Property
+
+    EventContext Operation
+    {
+        get 
+        {
+            if (operation == EventContext.NoOperation)
+            {
+                if (Session[classOperation] != null) operation = (EventContext)Session[classOperation];
+            }
+            return operation; 
+        }
+        set 
+        {
+            operation = value;
+            Session[classOperation] = operation;
+        }
+    }
+
+    Guid Key
+    {
+        get 
+        {
+            if (key == Guid.Empty)
+            {
+                if (Session[classKey] != null) key = (Guid)Session[classKey];
+            }
+            return key; 
+        }
+        set 
+        { 
+            key = value;
+            Session[classKey] = key;
+        }
+    }
+
+    byte[] TimeSpan
+    {
+        get
+        {
+            if (timeSpan == null)
+            {
+                if (Session[classTimeSpan] != null) timeSpan = (byte[])Session[classTimeSpan];
+            }
+            return timeSpan;
+        }
+        set
+        {
+            timeSpan = value;
+            Session[classTimeSpan] = timeSpan;
+        }
+    }
+
+    #region Security Property
+
+    bool IsInsert
+    {
+        get
+        {
+            if (isInsert == false)
+            {
+                if (Session[sessionInsert] != null) isInsert = (bool)Session[sessionInsert];
+            }
+            return isInsert;
+        }
+        set
+        {
+            isInsert = value;
+            Session[sessionInsert] = isInsert;
+        }
+    }
+
+    bool IsRead
+    {
+        get
+        {
+            if (isRead == false)
+            {
+                if (Session[sessionRead] != null) isRead = (bool)Session[sessionRead];
+            }
+            return isRead;
+        }
+        set
+        {
+            isRead = value;
+            Session[sessionRead] = isRead;
+        }
+    }
+
+    bool IsUpdate
+    {
+        get
+        {
+            if (isUpdate == false)
+            {
+                if (Session[sessionUpdate] != null) isUpdate = (bool)Session[sessionUpdate];
+            }
+            return isUpdate;
+        }
+        set
+        {
+            isUpdate = value;
+            Session[sessionUpdate] = isUpdate;
+        }
+    }
+
+    bool IsDelete
+    {
+        get
+        {
+            if (isDelete == false)
+            {
+                if (Session[sessionDelete] != null) isDelete = (bool)Session[sessionDelete];
+            }
+            return isDelete;
+        }
+        set
+        {
+            isDelete = value;
+            Session[sessionDelete] = isDelete;
+        }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Populate
+
+    private void Populate()
+    {
+        PopulateGridView();
+        PopulateList();
+    }
+
+    private void PopulateGridView()
+    { }
+
+    private void PopulateList()
+    {     
+        #PopulateList#
+    }
+
+    #endregion
+
+    #region Control Function
+
+    private void OperationManager()
+    {
+        lblOperation.Text = WebMessage.GetInformation(Operation);
+        lblMessageResult.Text = string.Empty;
+        switch (Operation)
+        {
+            case EventContext.Insert: WebTools.Block(false, pnlData.Controls); btnConfirm.Visible = true; btnClear.Visible = true; WebTools.Clear(pnlData.Controls); break;
+            case EventContext.Read: GetData(); WebTools.Block(true, pnlData.Controls); btnConfirm.Visible = false; btnClear.Visible = false; break;
+            case EventContext.Update: GetData(); WebTools.Block(false, pnlData.Controls); btnConfirm.Visible = true; btnClear.Visible = true; break;
+            case EventContext.Delete: GetData(); WebTools.Block(true, pnlData.Controls); btnConfirm.Visible = true; btnClear.Visible = false; break;
+        }
+    }
+
+    protected void btnClear_Click(object sender, ImageClickEventArgs e)
+    {
+        if ((Operation.Equals(EventContext.Create)) || (Operation.Equals(EventContext.Update))) WebTools.Clear(pnlData.Controls);
+    }
+
+    private bool CheckField()
+    {
+        if (!Page.IsValid) return false;
+        return true;
+    }
+
+    protected void btnExit_Click(object sender, ImageClickEventArgs e)
+    {
+        Server.Transfer(pageList);
+    }
+
+    #endregion
+
+    #region Get&Set Data
+
+    private void GetData()
+    {
+        item = item.GetByKeyuni(Key);
+
+        if (item.Keyuni != Guid.Empty)
+        {
+            #GetData#
+
+            TimeSpan = item.Timespan;
+            WebTools.ResetMessage(ref lblMessageResult, ref imgResult);
+        }
+        else
+        {
+            WebMessage.GetWarning(EventContext.Read, ref lblMessageResult, ref imgResult);
+            PopulateGridView();
+        }
+    }
+
+    private void SetData()
+    {
+        #SetData#
+
+        item.Timespan = TimeSpan;
+    }
+
+    #endregion 
+
+    protected void ConfirmOperation(object sender, ImageClickEventArgs e)
+    {
+        string errorMessage = string.Empty;
+
+        if (WebTools.OperationEnable)
+        {
+            if (CheckField())
+                try
+                {
+                    switch (Operation)
+                    {
+                        case EventContext.Insert: SetData(); item.Insert(); break;
+                        case EventContext.Update: SetData(); item.Keyuni = Key; item.Update(); break;
+                        case EventContext.Delete: item.Keyuni = Key; item.Timespan = TimeSpan; btnConfirm.Visible = false; item.Delete(); break;
+                        default: WebMessage.GetError(EventContext.NoFound, ref lblMessageResult); break;
+                    }
+                    #region Success Operation              
+                    WebMessage.GetSuccess(Operation, ref lblMessageResult, ref imgResult);                         
+                    WebTools.Block(true, pnlData.Controls);
+                    WebTools.OperationEnable = false;
+                    #endregion
+                }
+                catch (Exception ex) { WebMessage.GetError(ManageError.GetError(ex), ref lblMessageResult, ref imgResult); }
+        }
+        else WebMessage.GetWarning(EventContext.NoOperation, ref lblMessageResult, ref imgResult);
+    }
+
+    #region CustomPageFunction
+
+    #endregion    
+    
+}

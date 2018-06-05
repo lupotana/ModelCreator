@@ -1,0 +1,15 @@
+﻿        
+        public virtual bool CheckExist(***DeclareIndex***)
+        {
+            #region Parameters
+            
+		    ***ParameterKeys***
+
+            SQLBaseParameter[] parameters = new SQLBaseParameter[] { ***ListParameterKeys*** };
+            #endregion
+
+            object id = SqlHelperGupta.ExecuteScalar(ConnectionString, CommandType.Text, "SELECT 1 FROM #TableName#  WHERE #KeysIndex#",parameters);
+            if (id == null)
+                return false;
+            else return true;
+        }

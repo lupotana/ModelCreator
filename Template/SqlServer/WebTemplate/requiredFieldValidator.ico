@@ -1,0 +1,1 @@
+<asp:RequiredFieldValidator ID="rfv***Name***" runat="server" ControlToValidate="#ControlName#">*</asp:RequiredFieldValidator>

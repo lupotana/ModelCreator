@@ -1,0 +1,23 @@
+        public ***ClassName***Collection ***FunctionName*** (***parameterListHeader***)
+        {
+            string storedProcedure = "#StoredName#";
+            ***ClassName***Collection collection = new ***ClassName***Collection();
+
+            #region Parameters
+***ParameterListBody***
+            SqlParameter[] parameters = new SqlParameter[] { ***ParameterListCall*** };
+
+            #endregion
+           
+            SqlDataReader dataReader = SqlHelper.ExecuteReader(ProviderHelper.ConnectionString, CommandType.StoredProcedure, storedProcedure, parameters);
+            try
+            {
+                while (dataReader.Read())
+                {
+                    ***ClassName*** item = Mapping(dataReader);
+                    collection.Add(item);
+                }
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+            return collection;
+        }
